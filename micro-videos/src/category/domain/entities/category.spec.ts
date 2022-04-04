@@ -71,4 +71,32 @@ describe('Category Unit Tests', () => {
       expect(category.uniqueEntityId).toBeInstanceOf(UniqueEntityId);
     });
   });
+
+  test('update category', () => {
+    let category = new Category({ name: 'Movie' });
+    category.update('Movie 2', 'some description');
+    expect(category).toMatchObject({
+      name: 'Movie 2',
+      description: 'some description',
+    });
+
+    category = new Category({ name: 'Movie' });
+    category.update('Movie 2', null);
+    expect(category).toMatchObject({
+      name: 'Movie 2',
+      description: null,
+    });
+  });
+
+  test('should activate categoty', () => {
+    const category = new Category({ name: 'Movie', is_active: false });
+    category.activate();
+    expect(category.is_active).toBe(true);
+  });
+
+  test('should deactivate categoty', () => {
+    const category = new Category({ name: 'Movie', is_active: true });
+    category.deactivate();
+    expect(category.is_active).toBe(false);
+  });
 });
