@@ -21,6 +21,13 @@ export default class ValidatorRules {
     return this;
   }
 
+  minLength(min: number): Omit<this, 'maxLength'> {
+    if (!this.isEmpty() && this.value.length < min) {
+      throw new ValidationError(`The ${this.property} must be grather or equal than ${min} characters`);
+    }
+    return this;
+  }
+
   maxLength(max: number): Omit<this, 'maxLength'> {
     if (!this.isEmpty() && this.value.length > max) {
       throw new ValidationError(`The ${this.property} must be less or equal than ${max} characters`);

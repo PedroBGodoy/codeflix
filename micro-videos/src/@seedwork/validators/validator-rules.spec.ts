@@ -106,6 +106,28 @@ describe('ValidatorRules Unit Tests', () => {
     }
   });
 
+  test('minLength validation rules', () => {
+    const error = new ValidationError(`The field must be grather or equal than 3 characters`);
+    const rule = 'minLength';
+    const property = 'field';
+    const arrangeInvalid: ExpectedRule[] = [
+      { value: '', property, rule, error, param: [3] },
+      { value: '1', property, rule, error, param: [3] },
+      { value: '12', property, rule, error, param: [3] },
+    ];
+    for (const assertionData of arrangeInvalid) {
+      assertIsInvalid(assertionData);
+    }
+
+    const arrangeValid: ExpectedRule[] = [
+      { value: '123', property, rule, error, param: [3] },
+      { value: '1234', property, rule, error, param: [3] },
+    ];
+    for (const assertionData of arrangeValid) {
+      assertIsValid(assertionData);
+    }
+  });
+
   test('boolean validation rules', () => {
     const property = 'field';
     const rule = 'boolean';
