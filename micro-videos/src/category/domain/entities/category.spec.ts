@@ -4,8 +4,10 @@ import UniqueEntityId from '../../../@seedwork/domain/value-objects/unique-entit
 
 describe('Category Unit Tests', () => {
   test('contructor of category', () => {
+    Category.validate = jest.fn();
     let category = new Category({ name: 'Movie' });
     let props = omit(category.props, ['created_at']);
+    expect(Category.validate).toHaveBeenCalled();
     expect(props).toStrictEqual({
       name: 'Movie',
       description: null,
@@ -72,9 +74,10 @@ describe('Category Unit Tests', () => {
     });
   });
 
-  test('update category', () => {
+  it('should update a category', () => {
     let category = new Category({ name: 'Movie' });
     category.update('Movie 2', 'some description');
+    expect(Category.validate).toHaveBeenCalledTimes(2);
     expect(category).toMatchObject({
       name: 'Movie 2',
       description: 'some description',

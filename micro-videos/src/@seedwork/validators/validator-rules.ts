@@ -21,7 +21,7 @@ export default class ValidatorRules {
     return this;
   }
 
-  minLength(min: number): Omit<this, 'maxLength'> {
+  minLength(min: number): Omit<this, 'minLength'> {
     if (!this.isEmpty() && this.value.length < min) {
       throw new ValidationError(`The ${this.property} must be grather or equal than ${min} characters`);
     }
