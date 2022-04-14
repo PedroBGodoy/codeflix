@@ -1,4 +1,4 @@
-import ValidationError from '../../@seedwork/errors/validation-erros';
+import ValidationError from '../errors/validation-erros';
 import ValidatorRules from './validator-rules';
 
 type ExpectedRule = {

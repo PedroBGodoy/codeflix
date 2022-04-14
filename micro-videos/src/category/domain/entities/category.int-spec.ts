@@ -1,4 +1,4 @@
-import ValidationError from '../../../@seedwork/errors/validation-erros';
+import ValidationError from '../../../shared/domain/errors/validation-erros';
 import { Category } from './category';
 
 describe('Category Integration Tests', () => {

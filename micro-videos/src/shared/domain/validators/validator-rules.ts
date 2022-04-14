@@ -1,4 +1,4 @@
-import ValidationError from '../../@seedwork/errors/validation-erros';
+import ValidationError from '../errors/validation-erros';
 
 export default class ValidatorRules {
   private constructor(private value: any, private property: string) {}
